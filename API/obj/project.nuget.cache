@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cEjA75bD04Z5FYBEceIhuMMeC8VWBCJCskLnvRf/vxugDUJTkKTJS5+IrP3c++kI1znxNP1WFazKlmBIFKBImg==",
+  "dgSpecHash": "A7VChQKhPrM9DFORI6HxnDx6GZN5C+AbYK3WvmEjLhaNTzxSeXwIGfrT+T2hocweV+5z13q2mAPLBbpGH8636w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj",
+  "projectFilePath": "c:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MINDBODYSOLE\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\MINDBODYSOLE\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
