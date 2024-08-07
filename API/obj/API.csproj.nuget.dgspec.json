@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj": {}
+    "C:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj": {}
   },
   "projects": {
-    "c:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj": {
+    "C:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "c:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj",
+        "projectPath": "C:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\API.csproj",
         "packagesPath": "C:\\Users\\MINDBODYSOLE\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\obj\\",
+        "outputPath": "C:\\Users\\MINDBODYSOLE\\Documents\\Level 4 - coding class\\FullStackBlog24L\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MINDBODYSOLE\\AppData\\Roaming\\NuGet\\NuGet.Config"
