@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import {Container, Button} from 'react-bootstrap'
+import {Container, Button, Row, Col} from 'react-bootstrap'
+import NavBar from './components/NavBar'
+import CarouselHero from './components/CarouselHero'
+import Dashboard from './components/Dashboard'
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -24,22 +27,30 @@ const toggleDarkMode = () => {
 
   return (
   <>
-      <Container fluid
-        className={`d-flex flex-column justify-content-center align-items-center ${
-          isDarkMode ? 'bg-dark text-light' : 'bg-light' 
-        }`}
-        style={{ minHeight: "100vh" }}
-      >
-        <h1 className="text-center mb-5">Hello Blog</h1>
-        <h1>{isDarkMode ? "Dark Theme" : "Light Theme"}</h1>
+   
 
-        (
-          isDarkMode ? (
-            <Button variant='outline-primary' onClick={toggleDarkMode}>Dark Theme</Button>
-          ) : (
-            <Button variant='outline-dark' onClick={toggleDarkMode}>Light Theme</Button>
-          )
-        )
+
+
+
+      <Container fluid
+        className={` ${isDarkMode ? 'bg-dark text-light' : 'bg-light' }`}
+        style={{ minHeight: "100vh", padding: '0px' }}
+
+
+      > <Container className='p-0' fluid>
+    <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
+    </Container>
+      
+      <CarouselHero isDarkMode={isDarkMode}/>
+
+      <Row className='text-center'>
+        <Col>
+          <h1>Our Blog</h1>
+        </Col>
+      </Row>
+
+
+      <Dashboard isDarkMode={isDarkMode} />
 
       </Container>
     
