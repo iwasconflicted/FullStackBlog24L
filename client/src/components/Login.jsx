@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col,Button,Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import {login} from '../Services/DataService'
+import {GetLoggedInUser, login} from '../Services/DataService'
 
 
 
@@ -25,7 +25,7 @@ const Login = ({onLogin}) => {
 
     }
 
-    //Function or method to hanlde our submit
+    //Function or method to handle our submit
     const handleSubmit = async () => {
         let userData = {
             username: Username,

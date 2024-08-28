@@ -1,62 +1,63 @@
-import React from 'react'
-import { Nav, Navbar, NavDropdown, Container, NavLink, Image } from 'react-bootstrap'
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { IoSunnyOutline } from "react-icons/io5";
+import { FaRegMoon } from "react-icons/fa";
+import Moon from "../assets/moon.jpg";
+import { Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import { FaRegMoon } from 'react-icons/fa';
-import { IoSunnyOutline } from 'react-icons/io5'
-
-import Moon from "../assets/moon.jpg"
-
-
-const NavBar = ({ isDarkMode, toggleDarkMode }) => {
+const NavBar = ({ isDarkMode, toggleDarkMode, user }) => {
   return (
     <>
-        
-    <Navbar collapseOnSelect expand="lg" 
+      <Navbar
+        collapseOnSelect
         data-bs-theme={`${isDarkMode ? "dark" : "light"}`}
-    className={`${isDarkMode ? "bg-dark text-light" : "bg-body-tertiary"}`}
-    >
-      <Container>
-        <Navbar.Brand href="#home">Our Daily Blog</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#features">About</Nav.Link>
-            <Nav.Link href="#pricing">Contact</Nav.Link>
-            <NavDropdown title="Write" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Write</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+        expand="lg"
+        className={`${isDarkMode ? "bg-dark text-light" : "bg-body-tertiary"}`}
+        fixed="top"
+      >
+        <Container>
+          <Navbar.Brand href="#home">Our Daily Blog</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to={"/"}>
+                Blog Page
+              </Nav.Link>
+              <Nav.Link as={Link} to={"/Dashboard"}>
                 Dashboard
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Published</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Unpublished
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Nav className='welcome'>
-            <Nav.Link href="#deets">
-                {
-                    isDarkMode ? (
-                        <FaRegMoon onClick={toggleDarkMode} fontSize={20} />
-                    ) : (
-                        <IoSunnyOutline onClick={toggleDarkMode} fontSize={30}/>
-                    )
-                }
-            </Nav.Link>
-            <NavLink>
-                Welcome Gojo
-            </NavLink>
-            <Nav.Link eventKey={2} href="#memes">
-                <Image className='profilepic' src={Moon} roundedCircle/>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              </Nav.Link>
+            </Nav>
+            
+            
+            <Nav className="welcome">
+              <Nav.Link href="#deets">
+                {isDarkMode ? (
+                  <FaRegMoon onClick={toggleDarkMode} fontSize={20} />
+                ) : (
+                  <IoSunnyOutline onClick={toggleDarkMode} fontSize={30} />
+                )}
+              </Nav.Link>
 
+              <Nav.Link as={Link} to={"/CreateAccount"}>
+                Create Account
+              </Nav.Link>
+              <Nav.Link as={Link} to={"/Login"}>
+                Login
+              </Nav.Link>
+             
+              <Nav.Link>Welcome {user ? user.username : "Guest"}</Nav.Link>
+              <Nav.Link>
+                <Image className="profilepic" src={Moon} roundedCircle />
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
