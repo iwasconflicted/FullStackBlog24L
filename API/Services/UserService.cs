@@ -149,7 +149,12 @@ namespace API.Services
 
         public UserIdDTO GetUserIdDTOByUserName(string userName)
         {
-            throw new NotImplementedException();
+           var UserInfo = new UserIdDTO();
+           var foundUser = _context.UserInfo.SingleOrDefault(user => user.Username == userName);
+           UserInfo.UserId = foundUser.Id;
+           UserInfo.PublisherName = foundUser.Username;
+
+           return UserInfo;
         }
 
 
