@@ -25,10 +25,16 @@ const Dashboard = ({ isDarkMode, onLogin }) => {
   const [publisherName, setPublisherName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+
+  const [blogId, setBlogId] = useState(0);
+  const [IsDeleted, setIsDeleted] = useState(false)
+  const [isPublished, setIsPublished] = useState(false)
+
   //Dummy data useState
   const [blogItems, setBlogItems] = useState([]);
+ 
 
-  const handleSaveWithPublish = async () => 
+  const handleSave = async ({target:{textContent}}) => 
     {
       let {publisherName, userId} = LoggedInData();   
       const published = {
@@ -41,7 +47,7 @@ const Dashboard = ({ isDarkMode, onLogin }) => {
       Description: blogDescription,
       Date: new Date(),
       Category: blogCategory,
-      IsPublished: true,
+      IsPublished: textContent === "Save" ? false: true,
       IsDeleted: false,
     }
     console.log(published)
@@ -57,55 +63,64 @@ const Dashboard = ({ isDarkMode, onLogin }) => {
   }
 
 
-  const handleSaveWithUnPublish = async () => 
-  {
-    let {publisherName, userId} = LoggedInData();   
-    const notPublished = {
-    Id:0,
-    UserId: userId,
-    PublisherName: publisherName,
-    Tag: blogTags,
-    Title: blogTitle,
-    Image: blogImage,
-    Description: blogDescription,
-    Date: new Date(),
-    Category: blogCategory,
-    IsPublished: false,
-    IsDeleted: false,
-  }
-  console.log(notPublished)
-  handleClose();
-  let result = await AddBlogItems(notPublished) 
-  if (result)
-    {
-      let userBlogItems = await GetItemsByUserId(userId)
-      setBlogItems(userBlogItems);
+  // const handleSaveWithUnPublish = async () => 
+  // {
+  //   let {publisherName, userId} = LoggedInData();   
+  //   const notPublished = {
+  //   Id:0,
+  //   UserId: userId,
+  //   PublisherName: publisherName,
+  //   Tag: blogTags,
+  //   Title: blogTitle,
+  //   Image: blogImage,
+  //   Description: blogDescription,
+  //   Date: new Date(),
+  //   Category: blogCategory,
+  //   IsPublished: false,
+  //   IsDeleted: false,
+  // }
+  // console.log(notPublished)
+  // handleClose();
+  // let result = await AddBlogItems(notPublished) 
+  // if (result)
+  //   {
+  //     let userBlogItems = await GetItemsByUserId(userId)
+  //     setBlogItems(userBlogItems);
       
-    } 
-  }
+  //   } 
+  // }
 
 
 
   const handleClose = () => setShow(false);
-  const handleShow = (e) => {
+
+  const handleShow = (e,{id, publisherName, userId, title, description, category, tag, image, IsDeleted, isPublished}) => {
     
     setShow(true)
     if(e.target.textContent === 'Add Blog Item')
         {
             setEdit(false);
-            setBlogTitle("");
-            setBlogDescription("");
-            setBlogCategory("");
+           
+
+            console.log(e.target.textContent, edit);
+            
 
         }else{
-            setEdit(true);
-            setBlogTitle("My Awesome Title");
-            setBlogDescription("My Awesome Description");
-            setBlogCategory("Fitness");
-
+            setEdit(true)
 
         }
-        console.log(e.target.textContent,edit);
+            setBlogTitle(title);
+            setBlogId(id)
+            setUserId(userId)
+            setPublisherName(publisherName)
+            setBlogDescription(description);
+            setBlogCategory(category);
+            setBlogTags(tag);
+            setBlogImage(image);
+            setIsDeleted(IsDeleted)
+            setIsPublished(isPublished)
+            console.log(e.target.textContent, edit);
+      
 
 };
 
@@ -144,18 +159,14 @@ const loadUserData = async () =>
 
   let userBlogItems = await GetItemsByUserId(userInfo.userId);
   setBlogItems(userBlogItems);
-  setBlogItems("");
+  setUserId(userId);
+  // setBlogItems("");
 
-
-
-  
   setIsLoading(false);
   console.log("loaded blog items", userBlogItems);
   },1000)
   
 }
-
-
 
 useEffect(() => {
     if(!checkToken())
@@ -184,7 +195,7 @@ const handleImage = async (e) =>
         className={isDarkMode ? 'bg-dark text-light p-5': 'bg-light'}
         fluid
       >
-        <Button variant="outline-primary m-2" onClick={handleShow}>
+        <Button variant="outline-primary m-2" onClick={(e) => handleShow(e, {id:0, blogId:blogUserId, userId:userId, title:"", description:"", category:"", tag:"", image:"", IsDeleted:false, isPublished:false, publisherName:publisherName })}>
        Add Blog Item
         </Button>
         <Button variant="outline-primary m-2" onClick={handleShow}>
@@ -236,10 +247,10 @@ const handleImage = async (e) =>
             <Button variant="outline-secondary" onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="outline-primary" onClick={handleSaveWithUnPublish}>
+            <Button variant="outline-primary" onClick={handleSave}>
             {edit ? "  Save Changes" : "Save"}
             </Button>
-            <Button variant="outline-primary" onClick={handleSaveWithPublish}>
+            <Button variant="outline-primary" onClick={handleSave}>
               {edit ? "  Save Changes" : "Save"} and Publish
             </Button>
           </Modal.Footer>
@@ -256,7 +267,7 @@ const handleImage = async (e) =>
 
                 <Col className="d-flex justify-content-end mx-2">
                     <Button variant="outline-danger mx-2">Delete</Button>
-                    <Button variant="outline-info mx-2">Edit</Button>
+                    <Button variant="outline-info mx-2" onClick={(e) => handleShow(e, item)}>Edit</Button>
                     <Button variant="outline-primary mx-2">Unpublish</Button>
                 </Col>
             
@@ -272,7 +283,7 @@ const handleImage = async (e) =>
             
             <Col className="d-flex justify-content-end mx-2">
                     <Button variant="outline-danger mx-2">Delete</Button>
-                    <Button variant="outline-info mx-2">Edit</Button>
+                    <Button variant="outline-info mx-2"onClick={(e) => handleShow(e, item)} >Edit</Button>
                     <Button variant="outline-primary mx-2">Publish</Button>
                 </Col>
             </ListGroup>)

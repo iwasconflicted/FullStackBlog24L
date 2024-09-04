@@ -10,11 +10,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
 const [isDarkMode, setIsDarkMode] = useState(true);
-const [user, setUser] = useState(null);
+const [user, setUser] = useState(null); 
+const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 
 const handleLogin = (userData) => {
   setUser(userData);
+  setIsLoggedIn(true); //Trigger re-render
 }
 
 
@@ -54,7 +56,7 @@ const handleLogin = (userData) => {
     <>
       <BrowserRouter>
         <Container className="p-0" fluid>
-          <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} user={user} />
+          <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
         </Container>
 
         <Container
