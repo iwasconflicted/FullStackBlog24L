@@ -9,7 +9,7 @@ import Login from "./components/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+const [isDarkMode, setIsDarkMode] = useState(true);
 const [user, setUser] = useState(null);
 
 
@@ -36,6 +36,20 @@ const handleLogin = (userData) => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
+  // useEffect(() => {
+
+  //   const storedUser = localStorage.getItem("UserData");
+  //   if(storedUser)
+  //   {
+  //     let Userstored = JSON.parse(storedUser);
+  //     console.log(Userstored.publisherName, "userstored");
+      
+  //     setUser(Userstored);
+  //       }
+
+  // }, [])
+  
+
   return (
     <>
       <BrowserRouter>
@@ -56,9 +70,9 @@ const handleLogin = (userData) => {
             </Col>
               <Routes>
                 <Route path="/" element={<BlogPage/>}/>
-                <Route path="/Login" element={<Login onLogin={handleLogin} />}/>
+                <Route path="/Login" element={<Login/>}/>
                 <Route path="/CreateAccount" element={<CreateAccount/>}/>
-                <Route path="/Dashboard" element={<Dashboard isDarkMode={isDarkMode} />}/>
+                <Route path="/Dashboard" element={<Dashboard isDarkMode={isDarkMode} onLogin={handleLogin} />}/>
 
               </Routes>
 

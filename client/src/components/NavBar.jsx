@@ -48,7 +48,7 @@ const NavBar = ({ isDarkMode, toggleDarkMode, user }) => {
                 Login
               </Nav.Link>
              
-              <Nav.Link>Welcome {user ? user.username : "Guest"}</Nav.Link>
+              <Nav.Link>Welcome {user ? user.publisherName : "Guest"}</Nav.Link>
               <Nav.Link>
                 <Image className="profilepic" src={Moon} roundedCircle />
               </Nav.Link>

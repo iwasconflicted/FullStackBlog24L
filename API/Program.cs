@@ -41,7 +41,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-
+app.UseCors("BlogPolicy");
 
 app.UseHttpsRedirection();
 

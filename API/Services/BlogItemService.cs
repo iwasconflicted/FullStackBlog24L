@@ -85,12 +85,6 @@ namespace API.Services
 
 
 
-
-
-
-
-
-
 // Methods
         internal IEnumerable<BlogItemModel> GetItemByDate()
         {
@@ -102,6 +96,11 @@ namespace API.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<BlogItemModel> GetItemsByUserId(int userId)
+        {
+           return _context.BLogInfo.Where(item => item.UserId == userId);
+        }
+
         internal IEnumerable<BlogItemModel> GetPublishedItems()
         {
             throw new NotImplementedException();
@@ -110,41 +109,3 @@ namespace API.Services
     }
 }        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// public List<BlogItemModel> GetItemByTag(string Tag)
-        // {
-        //     List<BlogItemModel> AllBlogsWithTag = new List<BlogItemModel>();
-        //     var allItems = GetAllBlogItems().ToList();
-        //     for(int i = 0; i <allItems.Count; i++)
-        //     {
-        //         BlogItemModel Item = allItems[i];
-        //         var itemArr = Item.Tag.Split(',');
-        //         for(int j = 0; j < itemArr.Length; j++){
-        //             if(itemArr[j].Contains(Tag)){
-        //                 AllBlogsWithTag.Add(Item);
-        //                 break;
-        //             }
-        //         }
-        //     }
-        //     return AllBlogsWithTag;
-        // }
